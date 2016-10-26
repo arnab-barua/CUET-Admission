@@ -1,0 +1,142 @@
+body
+{
+	
+	BACKGROUND-IMAGE:URL(bbg1.png);
+	background-size:100% 100%;
+}
+#global{
+		
+		box-shadow: 0px 4px 15px 15px #000066;
+		border-radius:5px;
+		background-color:#ffffff;
+		margin-left:100px;
+		margin-right:100px;
+		margin-top:30px;
+		margin-bottom:30px;
+		overflow: auto;
+}	
+
+.header
+{
+border:1px solid #0080FF;
+background-image:url('cuetb.jpg');
+height: 200px;
+padding:10px;
+background-size:100% 100%;
+}
+
+
+.center_div
+{
+border:1px solid gray;
+text-align:left;
+border-radius:15px;
+
+}
+
+#structure
+{
+height:800px;
+}
+
+
+#page
+{
+width:885px;
+margin-left:3em;
+padding-top:1em;
+vertical-align:top;
+color:BLACK;
+}
+#page a{
+color:GREEN;
+list-style:none;
+display:block;
+font-weight:bold;}
+
+#page img{
+border:5px solid green;
+border-radius:5px;
+}
+
+#button {
+
+border-left:1px solid #cc6600;
+border-right:25px solid #cc6600;
+border-top:5px solid #cc6600;
+border-bottom:10px solid #cc6600;
+border-radius: 15px;
+        width:210px;
+		background-color:#FF9933;
+		vertical-align:top;
+        color: #ffffff;
+        }
+
+        #button ul {
+				margin-top:50px;
+                list-style: none;
+                margin-left: 4px;
+				margin-right: 4px;
+				margin-bottom: 4px;
+                padding: 0;
+                border: none;
+                }
+
+        #button li {
+		font-family: "Cooper Black","Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
+                border-bottom: 5px solid #9999FF;
+                margin: 0;
+				
+                list-style: none;
+                list-style-image: none;
+                }
+
+        #button li a {
+                display: block;
+                padding: 5px 5px 5px 0.5em;
+                border-left: 10px solid #000000;
+                border-right: 10px solid #000000;
+                background-color: #202020;
+				border-radius:10px;
+                color: #FFFFFF;
+                text-decoration: none;
+                width: 100%;
+                }
+
+        html>body #button li a {
+                width: auto;
+                }
+		#button li a:hover {
+                border-left: 10px solid #9999FF;
+                border-right: 10px solid #9999FF;
+                background-color: #000000;
+                color: #fff;
+				font-size:23px;
+                }
+
+        #button li #active {
+                border-left: 10px solid #1c64d1;
+                border-right: 10px solid #5ba3e0;
+                background-color: #2586d7;
+                color: #fff;
+                }
+#welcome{
+	background-color:#B2FF66;
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:50px;
+	padding-bottom:50px;
+}
+#welcome h3{
+	font-family: "Kuntsler Script","Lucida Handwriting", Monaco, "Bitstream Vera Sans Mono", monospace;
+}
+#welcome h4{
+	font-weight:normal;
+}
+#slideimg{
+margin-top:30px;
+	margin-left:135px;
+}
+#notice{
+	margin-left:74px;
+}
