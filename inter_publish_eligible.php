@@ -5,22 +5,32 @@
 <td id="page">
 	<?php
 	$pass=$_GET['pass'];
-	if($pass=="cuetCSE10"){
-		$query_set="UPDATE pages SET visibility = '0' WHERE PageNo =5";
-		mysql_query($query_set);
+	if($pass=="cuetCSE10")
+	{
+		$query_set = "UPDATE pages SET visibility = '0' WHERE PageNo = 5 ";
+		if($db->query($query_set) === true)
+		{
+			echo "Admission form is not visible now.<br>";
+		}
+		
 		$query_set="UPDATE pages SET visibility = '1' WHERE PageNo =6";
-		mysql_query($query_set);
-		$query_set="SELECT COUNT(FormNo) FROM applicant";
-		$result_total_row=mysql_query($query_set);
-		$num=mysql_fetch_array($result_total_row);
-		$total_applicant=$num[0];
-		echo "Total number of applicant for admission test = $total_applicant";
+		if($db->query($query_set) === true)
+		{
+			echo "Examinee list is visible now.<br>";
+		}
+		
+		$query_set = "SELECT * FROM applicant";
+		$result = $db->query($query_set);
+		$num = mysqli_num_rows($result);
+		echo "Total number of applicant for admission test = $num";
 		?>
+		
 		<form action="create_exam.php?token=northernRoof" method="post">
 			<b>Total Examinee for Admission test :</b>&nbsp;
-			<input type="text" name="examinee" size="3" maxlength="10"/></br>
+			<input type="text" name="total_examinee" size="3" maxlength="10"/></br>
 			<input type="SUBMIT" value="Create List">
 		</form>
+		
 		<?php
 		}
 	else{	

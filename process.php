@@ -89,7 +89,7 @@
 			$t=$e+$p+$c+$m;
 			if($t<17)
 			{
-				echo "Your total gpa of physics,chemistry,math and english of HSC examination is below 16. so you are not eligible";
+				echo "Your total gpa of physics,chemistry,math and english of HSC examination is below 17. so you are not eligible";
 				$ck=1;
 			}
 			
@@ -102,15 +102,13 @@
 			else
 			{
 				$sql="insert into applicant (name, FathersName, MothersName, sex, bdate, nationality, PerAddress, PreAddress, number, email, sscboard, sscyear, sscroll, sscgpa, hscboard, hscyear, hscroll, hscgpa, english, physics, chemistry, math, total)values ('$_POST[sname]', '$_POST[sfname]', '$_POST[smname]', '$_POST[sex]', '$_POST[byear]-$_POST[bmonth]-$_POST[btdate]', '$_POST[snation]', '$_POST[speraddress]', '$_POST[spreaddress]', '$_POST[smobnumber]', '$_POST[semail]', '$_POST[sscboard]', '$_POST[sscyear]', '$_POST[sscroll]', '$_POST[sscgpa]', '$_POST[hscboard]', '$_POST[hscyear]', '$_POST[hscroll]', '$_POST[hscgpa]', '$_POST[hsceng]', '$_POST[hscphy]', '$_POST[hscche]', '$_POST[hscmath]', '$t')";
-				if(!mysql_query("$sql",$con))
+				if($db->query($sql) === true)
 				{
-					die("Record not added ".mysql_error());
-				}
-				else
-				{
-					$formno=mysql_query("SELECT max( FormNo ) FROM applicant",$con);
-					$num=mysql_fetch_array($formno);
-					echo "Your form number is ".$num[0].".Please save this number.";
+					$sql2 = "SELECT MAX(FormNo) as 'max' FROM applicant";
+					$result = $db->query($sql2);
+					$row = $result->fetch_assoc();
+					$res = $row['max'];
+					echo "Your form number is " . $res . ". Please save this number.";
 				}
 			}
 		?>

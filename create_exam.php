@@ -5,37 +5,52 @@
 <td id="page">
 	<?php
 		$pass=$_GET['token'];
-		$examinee=$_POST['examinee'];
+		$examinee=$_POST['total_examinee'];
 		if($pass=="northernRoof")
 		{
 			$query="CREATE TABLE IF NOT EXISTS exam(formno int(5),name varchar(30))";
-			if(!mysql_query("$query",$con))
+			if($db->query($query) === false)
 			{
-				die("Record not added ".mysql_error());
+				echo "Cannt create exam table!!!!";
 			}
 			
 			$query="SELECT FormNo,name,total FROM applicant ORDER BY total DESC LIMIT 0,$examinee";
-			$result=mysql_query($query);
-			while($row=mysql_fetch_array($result))
+			foreach($db->query($query) as $row)
 			{
-				echo "$row[0] $row[1] $row[2]"."<br />";
-				$sql="INSERT INTO exam (Formno, Name)values ('$row[0]', '$row[1]')";
-				if(!mysql_query($sql))
+				$formno = $row["FormNo"];
+				$name = $row["name"];
+				$total = $row["total"];
+				$sql="INSERT INTO exam (Formno, Name)values ('{$formno}', '{$name}')";
+				
+				if($db->query($sql) === true)
 				{
-					die("Record cann't be added into exam table ".mysql_error());
+					echo "Record added : " . $formno . "Name : " . $name . "<br>";
 				}
+				else
+				{
+					echo "Record not added!!!";
+				}
+				
 			}
+			
 			$query="ALTER TABLE exam ADD roll INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY";
-			if(!mysql_query("$query",$con))
+			if($db->query($query) === true)
 			{
-				die("Cann't create the column Roll ".mysql_error());
-				echo "<br />";
+				echo "roll column added... <br />";
 			}
-			$query="ALTER TABLE exam ADD hallname VARCHAR( 50 ) NOT NULL";
-			if(!mysql_query("$query",$con))
+			else
 			{
-				die("Cann't create the column Hall Nmae ".mysql_error());
-				echo "<br />";
+				echo "Cannt add roll column!!!";
+			}
+			
+			$query="ALTER TABLE exam ADD hallname VARCHAR( 50 ) NOT NULL";
+			if($db->query($query) === true)
+			{
+				echo "hallname column added... <br />";
+			}
+			else
+			{
+				echo "Cannt add hallname column!!!";
 			}
 			for($i=1;$i<=$examinee;$i++)
 			{
@@ -53,11 +68,11 @@
 					$hall="New Academic  Building-406";
 				else
 					$hall="New Academic Building-507";
-				$query="UPDATE exam SET hallname='{$hall}' WHERE roll={$i}";
-				if(!mysql_query("$query",$con))
+				
+				$query = "UPDATE exam SET hallname='{$hall}' WHERE roll={$i}";
+				if($db->query($query) === false)
 				{
-					die("<br />Cann't assign Hall Nmae ".mysql_error());
-					echo "<br />";
+					echo "Cannt add Hall Name!!!<br />";
 				}
 			}
 		}

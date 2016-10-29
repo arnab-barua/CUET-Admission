@@ -4,12 +4,10 @@
 
 <td id="page">
 	<?php
-		$stmt = $db->prepare('SELECT visibility FROM pages WHERE PageNo=:pageno');
-		$stmt->bindValue(':pageno', '4', PDO::PARAM_INT);
-		$stmt->execute();
-		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo $row;
-		if($row[0]==0)
+		$sql = "SELECT visibility from pages where PageNo = 4";
+		$result = $db->query($sql);
+		$row = $result->fetch_assoc();
+		if($row["visibility"]==0)
 			echo "Admission circulation is not published yet";
 		else{ ?>
 			<h2 align="center"><font color="#000000"><b><u>UNDERGRADUATE ADMISSION-2013</u></b></h2>

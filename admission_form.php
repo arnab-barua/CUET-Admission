@@ -4,11 +4,11 @@
 	
 <td id="page">
 	<?php
-		$query="SELECT visibility FROM pages WHERE PageNo=5";
-		$result=mysql_query($query);
-		$row=mysql_fetch_array($result);
+		$query = "SELECT visibility FROM pages WHERE PageNo=5";
+		$result = $db->query($query);
+		$row = $result->fetch_assoc();
 		
-		if($row[0]==0)
+		if($row["visibility"]==0)
 			echo "Admission circulation is not published yet";
 		else{	
 	?>

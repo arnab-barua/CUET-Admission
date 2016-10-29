@@ -27,12 +27,12 @@
 						<?php
 						foreach($db->query('SELECT * FROM pages')as $row)
 						{
-							if($row[3]==1){
-								if($row[0]>=4){
-									echo "<li><a href=\"$row[1]\">--$row[2]</a></li>";
+							if($row["visibility"]==1){
+								if($row["PageNo"]>=4){
+									echo "<li><a href=" . $row["PageUrl"] . ">--" . $row["PageName"] . "</a></li>";
 								}
 								else{
-									echo "<li><a href=\"$row[1]\">$row[2]</a></li>";
+									echo "<li><a href=" . $row["PageUrl"] . ">" . $row["PageName"] . "</a></li>";
 								}
 							}
 						}
